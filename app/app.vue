@@ -16,16 +16,16 @@
         <div class="family-content">
           <div class="family-image">
             <img 
-              src="/images/familia.svg" 
+              src="/images/familia.jpg" 
               alt="Família do Nicolas" 
               class="family-photo"
             />
           </div>
           <div class="family-info">
-            <h2 class="family-title">Nossa História</h2>
+            <h2 class="family-title">A família aumentou!</h2>
             <p class="family-description">
-              Somos <strong>Maria e João</strong>, e estamos muito felizes em compartilhar com vocês 
-              a chegada do nosso primeiro filho, o <strong>Nicolas</strong>! 💙
+              Oieee <strong>Pessoal</strong>, estamos muito felizes em compartilhar com vocês 
+              a chegada do nosso segundo filho, o <strong>Nicolas</strong>! 💙
             </p>
             <p class="family-description">
               Depois de muito amor e expectativa, nosso pequeno príncipe está chegando 
@@ -37,7 +37,7 @@
                 <span class="stat-icon">📅</span>
                 <div class="stat-info">
                   <h4>Data Prevista</h4>
-                  <p>Dezembro 2025</p>
+                  <p>Outubro 2025</p>
                 </div>
               </div>
               <div class="stat-item">
@@ -63,9 +63,40 @@
     <!-- Products Grid -->
     <main class="main">
       <div class="container">
+        <!-- Price Filter -->
+        <div class="filter-section">
+          <h3 class="filter-title">Filtrar por Preço</h3>
+          <div class="filter-buttons">
+            <button 
+              :class="['filter-btn', { active: priceFilter === 'all' }]"
+              @click="setPriceFilter('all')"
+            >
+              Todos ({{ priceRanges.total }})
+            </button>
+            <button 
+              :class="['filter-btn', { active: priceFilter === 'low' }]"
+              @click="setPriceFilter('low')"
+            >
+              Até R$ 50 ({{ priceRanges.low }})
+            </button>
+            <button 
+              :class="['filter-btn', { active: priceFilter === 'medium' }]"
+              @click="setPriceFilter('medium')"
+            >
+              R$ 51 - R$ 150 ({{ priceRanges.medium }})
+            </button>
+            <button 
+              :class="['filter-btn', { active: priceFilter === 'high' }]"
+              @click="setPriceFilter('high')"
+            >
+              Acima de R$ 150 ({{ priceRanges.high }})
+            </button>
+          </div>
+        </div>
+
         <div class="products-grid">
           <div 
-            v-for="product in products" 
+            v-for="product in filteredProducts" 
             :key="product.id"
             class="product-card"
             @click="showQRCode(product)"
@@ -105,7 +136,7 @@
             </div>
           </div>
           <p class="modal-description">
-            Escaneie o QR code acima para presentear o Nicolas com {{ selectedProduct.name.toLowerCase() }}
+            Escaneie o PIX acima para presentear o Nicolas. 
           </p>
           <div class="pix-info">
             <p><strong>PIX:</strong> {{ selectedProduct.pixKey }}</p>
@@ -122,8 +153,12 @@ import { useProducts } from '../composables/useProducts'
 
 const {
   products,
+  filteredProducts,
   selectedProduct,
   qrCodeDataUrl,
+  priceFilter,
+  priceRanges,
+  setPriceFilter,
   showQRCode,
   closeModal
 } = useProducts()

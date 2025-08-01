@@ -149,7 +149,7 @@
 </template>
 
 <script setup>
-import { useProducts } from '../composables/useProducts'
+import { useProducts } from './composables/useProducts.js'
 
 const {
   products,
@@ -165,5 +165,5 @@ const {
 </script>
 
 <style>
-@import '../assets/css/main.css';
+@import './assets/css/main.css';
 </style>

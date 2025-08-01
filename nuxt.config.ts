@@ -14,6 +14,12 @@ export default defineNuxtConfig({
   },
   app: {
     baseURL: '/diaper-shower-nicolas/',
-    buildAssetsDir: '/_nuxt/'
+    buildAssetsDir: '/_nuxt/',
+    cdnURL: '/diaper-shower-nicolas/'
+  },
+  runtimeConfig: {
+    public: {
+      baseURL: '/diaper-shower-nicolas/'
+    }
   }
 })

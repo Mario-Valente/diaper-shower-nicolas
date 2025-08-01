@@ -16,7 +16,7 @@
         <div class="family-content">
           <div class="family-image">
             <img 
-              src="/images/familia.jpg" 
+              :src="getImageUrl('images/familia.jpg')" 
               alt="Família do Nicolas" 
               class="family-photo"
             />
@@ -150,6 +150,7 @@
 
 <script setup>
 import { useProducts } from './composables/useProducts.js'
+import { useAssets } from './composables/useAssets.js'
 
 const {
   products,
@@ -162,6 +163,8 @@ const {
   showQRCode,
   closeModal
 } = useProducts()
+
+const { getImageUrl } = useAssets()
 </script>
 
 <style>

@@ -72,6 +72,8 @@ docs/
 ├── index.html         # Página principal
 ├── 200.html          # SPA fallback
 ├── 404.html          # Página de erro
+├── favicon.ico        # Ícone da aba (formato tradicional)
+├── favicon.svg        # Ícone da aba (vetorial)
 ├── _nuxt/            # Assets JS/CSS
 │   ├── entry.*.css
 │   └── *.js
@@ -112,4 +114,6 @@ npm run deploy:github
 - ✅ Workflow atualizado  
 - ✅ Scripts corrigidos
 - ✅ Estrutura docs/ correta
+- ✅ Favicon personalizado (👶 + nome Nicolas)
+- ✅ Meta tags SEO configuradas
 - ✅ Pronto para deploy!

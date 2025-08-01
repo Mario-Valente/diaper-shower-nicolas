@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Fundo azul bebê -->
+  <circle cx="32" cy="32" r="30" fill="#4A90E2" stroke="#2C5282" stroke-width="2"/>
+  
+  <!-- Fralda -->
+  <path d="M18 28 Q32 22 46 28 L46 36 Q32 42 18 36 Z" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+  
+  <!-- Alfinetes da fralda -->
+  <circle cx="20" cy="30" r="2" fill="#F6AD55"/>
+  <circle cx="44" cy="30" r="2" fill="#F6AD55"/>
+  
+  <!-- Emoji bebê no centro -->
+  <text x="32" y="25" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#2D3748">👶</text>
+  
+  <!-- Nome Nicolas -->
+  <text x="32" y="50" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="white" font-weight="bold">NICOLAS</text>
+</svg>

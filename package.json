@@ -9,7 +9,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "deploy": "nuxt generate && echo 'diaper-shower-nicolas.com' > docs/CNAME",
-    "deploy:github": "nuxt generate"
+    "deploy:github": "nuxt generate && touch docs/.nojekyll"
   },
   "dependencies": {
     "express": "^5.1.0",

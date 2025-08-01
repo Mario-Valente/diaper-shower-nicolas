@@ -136,7 +136,7 @@
             </div>
           </div>
           <p class="modal-description">
-            Escaneie o PIX acima para presentear o Nicolas. 
+            Escaneie o PIX acima para presentear o Nicolas e se quiser deixe uma mensagem na descrição que vamos ler com muito carinho.
           </p>
           <div class="pix-info">
             <p><strong>PIX:</strong> {{ selectedProduct.pixKey }}</p>

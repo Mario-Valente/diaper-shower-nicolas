@@ -12,6 +12,7 @@
     "deploy:github": "nuxt generate"
   },
   "dependencies": {
+    "express": "^5.1.0",
     "nuxt": "^4.0.1",
     "qrcode": "^1.5.4",
     "vue": "^3.5.17",

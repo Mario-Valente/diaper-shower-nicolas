@@ -1,13 +1,21 @@
 import { ref, computed } from 'vue'
 import QRCode from 'qrcode'
-import { useAssets } from './useAssets.js'
 
 export const useProducts = () => {
   const selectedProduct = ref(null)
   const qrCodeDataUrl = ref('')
   const priceFilter = ref('all') // 'all', 'low', 'medium', 'high'
-  
-  const { getImageUrl } = useAssets()
+
+  // Função para obter URL da imagem
+  const getImageUrl = (imagePath) => {
+    const cleanPath = imagePath.startsWith('/') ? imagePath.slice(1) : imagePath
+    
+    if (process.env.NODE_ENV === 'development') {
+      return `/${cleanPath}`
+    }
+    
+    return `/diaper-shower-nicolas/${cleanPath}`
+  }
 
 const products = ref([
     {
@@ -16,7 +24,7 @@ const products = ref([
         price: 'R$ 40,00',
         description: 'Kit higiene (tesoura e etc)',
         icon: '🧰',
-        image: getImageUrl('images/kit-higiene.jpg'),
+        image: 'images/kit-higiene.jpg',
         qrCode: '00020126510014BR.GOV.BCB.PIX0129mariobarbosavalente@gmail.com5204000053039865802BR5925MARIO BARBOSA VALENTE NET6012SAO LEOPOLDO622605223mMR7yPG6M19APfJImZLJD6304EB63',
         pixKey: 'mariobarbosavalente@gmail.com'
     },
@@ -26,7 +34,7 @@ const products = ref([
         price: 'R$ 400,00',
         description: 'Cadeira de descanso confortável',
         icon: '🪑',
-        image: getImageUrl('images/cadeira-descanso.jpg'),
+        image: 'images/cadeira-descanso.jpg',
         qrCode: '00020126510014BR.GOV.BCB.PIX0129mariobarbosavalente@gmail.com5204000053039865802BR5925MARIO BARBOSA VALENTE NET6012SAO LEOPOLDO622605223mMR7yPG6M19APfJImZLJD6304EB63',
         pixKey: 'mariobarbosavalente@gmail.com'
     },
@@ -36,7 +44,7 @@ const products = ref([
         price: 'R$ 200,00',
         description: 'Babá eletrônica para monitoramento',
         icon: '📡',
-        image: getImageUrl('images/baba-eletronica.jpg'),
+        image: 'images/baba-eletronica.jpg',
         qrCode: '00020126510014BR.GOV.BCB.PIX0129mariobarbosavalente@gmail.com5204000053039865802BR5925MARIO BARBOSA VALENTE NET6012SAO LEOPOLDO622605223mMR7yPG6M19APfJImZLJD6304EB63',
         pixKey: 'mariobarbosavalente@gmail.com'
     },
@@ -46,7 +54,7 @@ const products = ref([
         price: 'R$ 100,00',
         description: 'Trocador prático para o bebê',
         icon: '🔄',
-        image: getImageUrl('images/trocador.jpg'),
+        image: 'images/trocador.jpg',
         qrCode: '00020126510014BR.GOV.BCB.PIX0129mariobarbosavalente@gmail.com5204000053039865802BR5925MARIO BARBOSA VALENTE NET6012SAO LEOPOLDO622605223mMR7yPG6M19APfJImZLJD6304EB63',
         pixKey: 'mariobarbosavalente@gmail.com'
     },
@@ -56,7 +64,7 @@ const products = ref([
         price: 'R$ 50,00',
         description: 'Toalha com capuz para bebê',
         icon: '🛁',
-        image: getImageUrl('images/toalha-bebe.jpg'),
+        image: 'images/toalha-bebe.jpg',
         qrCode: '00020126510014BR.GOV.BCB.PIX0129mariobarbosavalente@gmail.com5204000053039865802BR5925MARIO BARBOSA VALENTE NET6012SAO LEOPOLDO622605223mMR7yPG6M19APfJImZLJD6304EB63',
         pixKey: 'mariobarbosavalente@gmail.com'
     },
@@ -66,7 +74,7 @@ const products = ref([
         price: 'R$ 30,00',
         description: 'Fralda de pano reutilizável',
         icon: '🩲',
-        image: getImageUrl('images/fralda-pano.jpg'),
+        image: 'images/fralda-pano.jpg',
         qrCode: '00020126510014BR.GOV.BCB.PIX0129mariobarbosavalente@gmail.com5204000053039865802BR5925MARIO BARBOSA VALENTE NET6012SAO LEOPOLDO622605223mMR7yPG6M19APfJImZLJD6304EB63',
         pixKey: 'mariobarbosavalente@gmail.com'
     },
@@ -76,7 +84,7 @@ const products = ref([
         price: 'R$ 140,00',
         description: 'Almofada para amamentação confortável',
         icon: '🛏️',
-        image: getImageUrl('images/almofada-amamentacao.jpg'),
+        image: 'images/almofada-amamentacao.jpg',
         qrCode: '00020126510014BR.GOV.BCB.PIX0129mariobarbosavalente@gmail.com5204000053039865802BR5925MARIO BARBOSA VALENTE NET6012SAO LEOPOLDO622605223mMR7yPG6M19APfJImZLJD6304EB63',
         pixKey: 'mariobarbosavalente@gmail.com'
     },
@@ -86,7 +94,7 @@ const products = ref([
         price: 'R$ 40,00',
         description: 'Babadores para bebê',
         icon: '🦺',
-        image: getImageUrl('images/babadores.jpg'),
+        image: 'images/babadores.jpg',
         qrCode: '00020126510014BR.GOV.BCB.PIX0129mariobarbosavalente@gmail.com5204000053039865802BR5925MARIO BARBOSA VALENTE NET6012SAO LEOPOLDO622605223mMR7yPG6M19APfJImZLJD6304EB63',
         pixKey: 'mariobarbosavalente@gmail.com'
     },
@@ -96,7 +104,7 @@ const products = ref([
         price: 'R$ 250,00',
         description: 'Tapete de atividades para bebê',
         icon: '🧸',
-        image: getImageUrl('images/tapete-atividades.jpg'),
+        image: 'images/tapete-atividades.jpg',
         qrCode: '00020126510014BR.GOV.BCB.PIX0129mariobarbosavalente@gmail.com5204000053039865802BR5925MARIO BARBOSA VALENTE NET6012SAO LEOPOLDO622605223mMR7yPG6M19APfJImZLJD6304EB63',
         pixKey: 'mariobarbosavalente@gmail.com'
     },
@@ -106,7 +114,7 @@ const products = ref([
         price: 'R$ 30,00',
         description: 'Hidratante para pele do bebê',
         icon: '🧴',
-        image: getImageUrl('images/hidratante-bebe.jpg'),
+        image: 'images/hidratante-bebe.jpg',
         qrCode: '00020126510014BR.GOV.BCB.PIX0129mariobarbosavalente@gmail.com5204000053039865802BR5925MARIO BARBOSA VALENTE NET6012SAO LEOPOLDO622605223mMR7yPG6M19APfJImZLJD6304EB63',
         pixKey: 'mariobarbosavalente@gmail.com'
     },
@@ -116,7 +124,7 @@ const products = ref([
         price: 'R$ 20,00',
         description: 'Sabonete hipoalergênico para bebê',
         icon: '🧼',
-        image: getImageUrl('images/sabonete-bebe.jpg'),
+        image: 'images/sabonete-bebe.jpg',
         qrCode: '00020126510014BR.GOV.BCB.PIX0129mariobarbosavalente@gmail.com5204000053039865802BR5925MARIO BARBOSA VALENTE NET6012SAO LEOPOLDO622605223mMR7yPG6M19APfJImZLJD6304EB63',
         pixKey: 'mariobarbosavalente@gmail.com'
     },
@@ -126,7 +134,7 @@ const products = ref([
         price: 'R$ 50,00',
         description: 'Aspirador nasal para bebê',
         icon: '👃',
-        image: getImageUrl('images/aspirador-nasal.jpg'),
+        image: 'images/aspirador-nasal.jpg',
         qrCode: '00020126510014BR.GOV.BCB.PIX0129mariobarbosavalente@gmail.com5204000053039865802BR5925MARIO BARBOSA VALENTE NET6012SAO LEOPOLDO622605223mMR7yPG6M19APfJImZLJD6304EB63',
         pixKey: 'mariobarbosavalente@gmail.com'
     },
@@ -136,7 +144,7 @@ const products = ref([
         price: 'R$ 20,00',
         description: 'Mordedor de silicone',
         icon: '👶',
-        image: getImageUrl('images/mordedor.jpg'),
+        image: 'images/mordedor.jpg',
         qrCode: '00020126510014BR.GOV.BCB.PIX0129mariobarbosavalente@gmail.com5204000053039865802BR5925MARIO BARBOSA VALENTE NET6012SAO LEOPOLDO622605223mMR7yPG6M19APfJImZLJD6304EB63',
         pixKey: 'mariobarbosavalente@gmail.com'
     },
@@ -146,7 +154,7 @@ const products = ref([
         price: 'R$ 80,00',
         description: 'Macacão confortável para bebê',
         icon: '👕',
-        image: getImageUrl('images/macacao.jpg'),
+        image: 'images/macacao.jpg',
         qrCode: '00020126510014BR.GOV.BCB.PIX0129mariobarbosavalente@gmail.com5204000053039865802BR5925MARIO BARBOSA VALENTE NET6012SAO LEOPOLDO622605223mMR7yPG6M19APfJImZLJD6304EB63',
         pixKey: 'mariobarbosavalente@gmail.com'
     },
@@ -156,7 +164,7 @@ const products = ref([
         price: 'R$ 60,00',
         description: 'Pacote de fraldas descartáveis',
         icon: '🩲',
-        image: getImageUrl('images/fralda.jpg'),
+        image: 'images/fralda.jpg',
         qrCode: '00020126510014BR.GOV.BCB.PIX0129mariobarbosavalente@gmail.com5204000053039865802BR5925MARIO BARBOSA VALENTE NET6012SAO LEOPOLDO622605223mMR7yPG6M19APfJImZLJD6304EB63',
         pixKey: 'mariobarbosavalente@gmail.com'
     },
@@ -166,11 +174,19 @@ const products = ref([
         price: 'R$ 180,00',
         description: 'Banheira para bebê',
         icon: '🛁',
-        image: getImageUrl('images/banheira.jpg'),
+        image: 'images/banheira.jpg',
         qrCode: '00020126510014BR.GOV.BCB.PIX0129mariobarbosavalente@gmail.com5204000053039865802BR5925MARIO BARBOSA VALENTE NET6012SAO LEOPOLDO622605223mMR7yPG6M19APfJImZLJD6304EB63',
         pixKey: 'mariobarbosavalente@gmail.com'
     }
 ])
+
+  // Produtos com URLs de imagens corretas
+  const productsWithImages = computed(() => {
+    return products.value.map(product => ({
+      ...product,
+      image: getImageUrl(product.image)
+    }))
+  })
 
   // Função para extrair valor numérico do preço
   const getNumericPrice = (priceString) => {
@@ -180,10 +196,10 @@ const products = ref([
   // Produtos filtrados por preço
   const filteredProducts = computed(() => {
     if (priceFilter.value === 'all') {
-      return products.value
+      return productsWithImages.value
     }
 
-    return products.value.filter(product => {
+    return productsWithImages.value.filter(product => {
       const price = getNumericPrice(product.price)
       
       switch (priceFilter.value) {
@@ -239,7 +255,7 @@ const products = ref([
   }
 
   return {
-    products,
+    products: productsWithImages,
     filteredProducts,
     selectedProduct,
     qrCodeDataUrl,
@@ -247,6 +263,7 @@ const products = ref([
     priceRanges,
     setPriceFilter,
     showQRCode,
-    closeModal
+    closeModal,
+    getImageUrl
   }
 }

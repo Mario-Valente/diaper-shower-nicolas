@@ -150,7 +150,6 @@
 
 <script setup>
 import { useProducts } from './composables/useProducts.js'
-import { useAssets } from './composables/useAssets.js'
 
 const {
   products,
@@ -161,10 +160,9 @@ const {
   priceRanges,
   setPriceFilter,
   showQRCode,
-  closeModal
+  closeModal,
+  getImageUrl
 } = useProducts()
-
-const { getImageUrl } = useAssets()
 </script>
 
 <style>

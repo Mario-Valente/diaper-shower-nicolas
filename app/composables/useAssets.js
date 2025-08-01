@@ -4,7 +4,7 @@ export const useAssets = () => {
     const cleanPath = imagePath.startsWith('/') ? imagePath.slice(1) : imagePath
     
     // Em desenvolvimento, usar o caminho normal
-    if (process.dev) {
+    if (process.env.NODE_ENV === 'development') {
       return `/${cleanPath}`
     }
     
